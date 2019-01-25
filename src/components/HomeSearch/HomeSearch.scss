@@ -16,6 +16,7 @@
     }
     &-wrapper {
       display: flex;
+      margin-bottom: 10px;
       overflow: hidden;
       border: 1px solid rgb(105, 105, 105);
       border-radius: 5px;
@@ -41,6 +42,19 @@
       svg {
         height: 30px;
         width: 30px;
+      }
+    }
+    &-checkboxes {
+      display: flex;
+      justify-content: center;
+      @include media-up(md) {
+        justify-content: flex-end;
+      }
+      &__checkbox {
+        margin-right: 10px;
+        &:nth-child(3) {
+          margin-right: 0;
+        }
       }
     }
   }

@@ -5,15 +5,26 @@ class HomeSearch extends Component {
   constructor() {
     super();
 
-    this.state = {};
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      images: true,
+      audio: false,
+      video: false,
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
-  handleChange(e) {
+  handleInputChange(e) {
     this.setState({
       searchText: e.target.value.length ?
-        e.target.value : null
+        e.target.value : null,
     });
+  }
+
+  handleCheckboxChange(e, type) {
+    this.setState({
+      [type]: e.target.checked,
+    })
   }
 
   render() {
@@ -30,7 +41,7 @@ class HomeSearch extends Component {
               id="nasa-home-search"
               type="text"
               className="home-search__form-input"
-              onChange={this.handleChange}
+              onChange={this.handleInputChange}
             />
             <button
               type="submit"
@@ -48,6 +59,32 @@ class HomeSearch extends Component {
                 <use xlinkHref="#icon-search"></use>
               </svg>
             </button>
+          </div>
+          <div className="home-search__form-checkboxes">
+              <div className="home-search__form-checkboxes__checkbox">
+                <label htmlFor="nasa-images">Images</label>
+                <input
+                  type="checkbox"
+                  onChange={(e) => this.handleCheckboxChange(e, 'images')}
+                  checked={this.state.images}
+                />
+              </div>
+              <div className="home-search__form-checkboxes__checkbox">
+                <label htmlFor="nasa-images">Audio</label>
+                <input
+                  type="checkbox"
+                  onChange={(e) => this.handleCheckboxChange(e, 'audio')}
+                  checked={this.state.audio}
+                />
+              </div>
+              <div className="home-search__form-checkboxes__checkbox">
+                <label htmlFor="nasa-images">Video</label>
+                <input
+                  type="checkbox"
+                  onChange={(e) => this.handleCheckboxChange(e, 'video')}
+                  checked={this.state.video}
+                />
+              </div>
           </div>
         </form>
       </section>
