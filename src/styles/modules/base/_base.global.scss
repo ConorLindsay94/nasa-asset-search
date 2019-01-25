@@ -1,0 +1,41 @@
+/**
+* Global (Site Wide) Styles
+*/
+* {
+  box-sizing: inherit;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+html,body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  color: $colourText;
+  font-family: $fontBody;
+}
+
+img {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  border: 0;
+}
+
+.svg-sprite {
+  display: none;
+}
+
+#root {
+  height: 100%;
+  .nasa-app {
+    height: 100%;
+  }
+}

@@ -1,0 +1,13 @@
+/**
+ * StyleGuide.Mixins.Zindex
+ */
+
+@mixin z-index($name) {
+  $layer: map-get($site-zindexs, $name);
+  @if $layer {
+    z-index: $layer;
+  }
+  else {
+    @warn "Could not find `#{$name}` in site z-indexs.";
+  }
+}

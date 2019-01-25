@@ -1,0 +1,93 @@
+/**
+ * Settings.Variables
+ */
+
+// Containers
+$contain-large: 1600px;
+$contain-standard: 1280px;
+$contain-small: 1000px;
+
+// Site breakpoints
+$site-breakpoints: (
+  vs: 350,  // Very Small
+  xs: 450,  // Extra Small
+  sm: 530,  // Small Medium
+  sl: 620,  // Small
+  ms: 768,  // Medium Small
+  md: 870,  // Medium
+  ml: 1024, // Medium Large
+  lg: 1280, // Large
+  xl: 1600  // Extra Large
+) !default;
+
+// Display types
+$display-types: (
+  none,
+  inline,
+  inline-block,
+  block,
+  table,
+  table-cell,
+  table-row,
+  flex,
+  inline-flex
+) !default;
+
+$position-types: (
+  static,
+  relative,
+  absolute,
+  fixed,
+  sticky,
+) !default;
+
+// Z Indexs
+$site-zindexs: (
+  first: 10,
+  second: 20,
+  third: 30,
+  fourth: 40,
+  fifth: 50,
+  top: 9999,
+) !default;
+
+// tyography
+$body-font-bold: gilroy-bold, Arial, sans-serif;
+$body-font: gilroy, Arial, sans-serif;
+$light-font: "Lora", serif;
+$body-font-size: 1rem;
+$minim-font-size: .8125rem;
+$h1-font-size: 4.5rem;
+$h2-font-size: 4rem;
+$h3-font-size: 3rem;
+$h4-font-size: 2.25rem;
+$h5-font-size: 1.5rem;
+$h6-font-size: $body-font-size;
+
+// site colours
+$primary: #053e6d;
+$secondary: lighten($primary, 10%);
+$yellow-orange: #ffbc42;
+$dodger-blue: #1992ee;
+$blue-bayoux: #5c7280;
+$ruby: #d81159;
+$turquoise: #5ee6a0;
+$gainsboro: #c1c1c1;
+
+// Basic Colours
+$white: #ffffff;
+$black: #000000;
+$background: #eff3f4;
+$red: #ff0000;
+$green: #04a704;
+$disable: #e6e6e6;
+
+// buttons
+$button-padding: 1rem;
+$button-border-radius: .3125rem;
+
+// forms
+$form-elm-padding: .7rem;
+$form-elm-line-height: 1.5rem;
+$form-elm-margin-bottom: 1rem;
+$accessability-outline: 0 0 0 2px $disable;
