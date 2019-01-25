@@ -39,3 +39,12 @@ img {
     height: 100%;
   }
 }
+
+.error {
+  color: #fc3d21;
+  opacity: 0;
+  transition: opacity .2s ease;
+  &--display {
+    opacity: 1;
+  }
+}

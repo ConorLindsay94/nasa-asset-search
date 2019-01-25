@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Checkbox from '../Checkbox/Checkbox';
 
 class HomeSearch extends Component {
 
@@ -27,6 +28,16 @@ class HomeSearch extends Component {
     })
   }
 
+  checkboxSelected() {
+    if (!this.state.images &&
+        !this.state.audio &&
+        !this.state.video) {
+          return false;
+      } else {
+        return true;
+      }
+  }
+
   render() {
     return (
       <section className="home-search">
@@ -45,11 +56,11 @@ class HomeSearch extends Component {
             />
             <button
               type="submit"
-              className={this.state.searchText ? 
+              className={this.state.searchText && this.checkboxSelected() ? 
                 "home-search__form-submit home-search__form-submit--active" :
                 "home-search__form-submit"
               }
-              disabled={this.state.searchText ?
+              disabled={this.state.searchText && this.checkboxSelected() ?
                 "" : "disabled"
               }
             >
@@ -62,29 +73,35 @@ class HomeSearch extends Component {
           </div>
           <div className="home-search__form-checkboxes">
               <div className="home-search__form-checkboxes__checkbox">
-                <label htmlFor="nasa-images">Images</label>
-                <input
-                  type="checkbox"
-                  onChange={(e) => this.handleCheckboxChange(e, 'images')}
-                  checked={this.state.images}
+                <Checkbox
+                  id="nasa-images"
+                  label="Images"
+                  handleCheckboxChange={this.handleCheckboxChange}
+                  type={this.state.images}
+                  typeText="images"
                 />
               </div>
               <div className="home-search__form-checkboxes__checkbox">
-                <label htmlFor="nasa-images">Audio</label>
-                <input
-                  type="checkbox"
-                  onChange={(e) => this.handleCheckboxChange(e, 'audio')}
-                  checked={this.state.audio}
+                <Checkbox
+                  id="nasa-audio"
+                  label="Audio"
+                  handleCheckboxChange={this.handleCheckboxChange}
+                  type={this.state.audio}
+                  typeText="audio"
                 />
               </div>
               <div className="home-search__form-checkboxes__checkbox">
-                <label htmlFor="nasa-images">Video</label>
-                <input
-                  type="checkbox"
-                  onChange={(e) => this.handleCheckboxChange(e, 'video')}
-                  checked={this.state.video}
+                <Checkbox
+                  id="nasa-video"
+                  label="Video"
+                  handleCheckboxChange={this.handleCheckboxChange}
+                  type={this.state.video}
+                  typeText="video"
                 />
               </div>
+          </div>
+          <div className="home-search__form-message">
+            <p className={`error ${!this.checkboxSelected() ? 'error--display' : ''}`}>You must choose at least one type of asset.</p>
           </div>
         </form>
       </section>

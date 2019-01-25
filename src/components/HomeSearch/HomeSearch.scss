@@ -47,6 +47,7 @@
     &-checkboxes {
       display: flex;
       justify-content: center;
+      margin-bottom: 10px;
       @include media-up(md) {
         justify-content: flex-end;
       }
@@ -55,6 +56,13 @@
         &:nth-child(3) {
           margin-right: 0;
         }
+      }
+    }
+    &-message {
+      text-align: center;
+      @include fluid-type(font-size, 320px, 1000px, 15px, 20px);
+      @include media-up(md) {
+        text-align: right;
       }
     }
   }
