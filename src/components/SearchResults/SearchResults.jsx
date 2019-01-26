@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import createMediaArray from '../../util/create-media-array';
+import determineContent from '../../util/determine-content';
 import Checkbox from '../Checkbox/Checkbox';
 
 class SearchResults extends Component {
@@ -85,16 +87,19 @@ class SearchResults extends Component {
         <div className="search__results">
           {
             results ?
-              results.items.filter(item => item.links).map(item => (
-                <article 
-                  key={item.data[0]['nasa_id']}
-                  className="search__results__item"
+              results.items.map(item => (
+                <Link
+                  to={`/asset/${item.data[0]['media_type']}/${item.data[0]['nasa_id']}`}
+                  className="search__results-link"
                 >
-                  <div className="search__results__item-image">
-                    <img src={item.links[0].href} />
-                  </div>
-                  <label>{item.data[0].title}</label>
-                </article>
+                  <article 
+                    key={item.data[0]['nasa_id']}
+                    className="search__results__item"
+                  >
+                    {determineContent(item)}
+                    <label>{item.data[0].title}</label>
+                  </article>
+                </Link>
               )) : <p>Loading...</p>
           }
         </div>

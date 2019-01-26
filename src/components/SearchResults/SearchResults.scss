@@ -2,14 +2,11 @@
   margin: 0 auto;
   padding-top: 100px;
   height: 100%;
-  width: 80%;
+  width: 90%;
   &__filter {
     display: flex;
     flex-direction: column;
     padding: 20px 0;
-    @include media-up(sl) {
-      padding: 20px;
-    }
     &__checkboxes {
       display: flex;
       &-checkbox {
@@ -23,31 +20,81 @@
   &__results {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    &-link {
+      padding: 20px 0px;
+      width: 100%;
+      text-decoration: none;
+      @include media-between(sl, ml) {
+        padding-left: 10%;
+        width: 45%;
+        &:first-child {
+          padding-left: 0;
+        }
+        &:nth-child(2n + 1){
+          padding-left: 0;
+        }
+      }
+      @include media-up(ml) {
+        padding-left: 6.66%;
+        width: 20%;
+        &:first-child {
+          padding-left: 0;
+        }
+        &:nth-child(4n + 1){
+          padding-left: 0;
+        }
+      }
+    }
     &__item {
       display: flex;
       flex-direction: column;
-      padding: 20px 0px;
       width: 100%;
+      color: #000000;
       text-align: center;
+      text-decoration: none;
       cursor: pointer;
-      @include media-up(sl) {
-        padding: 20px;
-        width: 40%;
-      }
-      @include media-up(ml) {
-        width: 20%;
-      }
       &-image {
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 400px;
+        width: 100%;
         overflow: hidden;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         opacity: .8;
         transition: opacity .2s ease;
+        @include media-up(sl) {
+          height: 250px;
+        }
+        @include media-up(ml) {
+          height: 200px;
+        }
         &:hover {
           opacity: 1;
         }
+      }
+      svg {
+        height: 200px;
+        opacity: .8;
+        fill: #ffffff;
+        @include media-up(sl) {
+          height: 150px;
+        }
+        @include media-up(ml) {
+          height: 100px;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+      label {
+        margin: 10px 0;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }

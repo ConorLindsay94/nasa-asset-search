@@ -11,7 +11,7 @@ class HomeSearch extends Component {
       mediaTypes: [
         { type: 'image', value: true, prettyName: 'Images'},
         { type: 'audio', value: false, prettyName: 'Audio'},
-        { type: 'videos', value: false, prettyName: 'Videos'},
+        { type: 'video', value: false, prettyName: 'Videos'},
       ],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -23,6 +23,7 @@ class HomeSearch extends Component {
   componentDidMount() {
     this.props.setQueryString(null);
     this.props.setResults(null);
+    this.props.setMediaTypes([...this.state.mediaTypes]);
   }
 
   handleInputChange(e) {
@@ -43,6 +44,8 @@ class HomeSearch extends Component {
 
     this.setState({
       mediaTypes,
+    }, () => {
+      this.props.setMediaTypes([...mediaTypes]);
     });
   }
 

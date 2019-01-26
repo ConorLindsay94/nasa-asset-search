@@ -17,5 +17,5 @@ export default async (endpoint, params) => {
     method: 'get',
   });
 
-  return response;
+  return response.data;
 };

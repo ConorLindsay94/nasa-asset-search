@@ -10,6 +10,7 @@
     "no-new": "off",
     "no-underscore-dangle": "off",
     "react/jsx-filename-extension": [0],
-    "no-case-declarations": "off"
+    "no-case-declarations": "off",
+    "dot-notation": ["error", { "allowPattern": "^[a-z]+(_[a-z]+)+$" }]
   }
 }
