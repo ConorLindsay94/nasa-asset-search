@@ -30,6 +30,7 @@ class Header extends Component {
 
   handleSubmit(e) {
     const media = this.props.mediaTypes;
+    const selectedMediaTypes = media.filter(type => type.value);
 
     e.preventDefault();
 
@@ -37,10 +38,10 @@ class Header extends Component {
     this.props.setResults(null);
     this.props.history.push({
       pathname: '/search',
-      search: `?query=${this.state.searchText}&media=${media}`,
+      search: `?query=${this.state.searchText}&media=${selectedMediaTypes.map(type => type.type)}`,
       state: {
         query: this.state.searchText,
-        media: media,
+        media: selectedMediaTypes.map(type => type.type),
       }
     });
   }

@@ -9,6 +9,7 @@
     "import/prefer-default-export": "off",
     "no-new": "off",
     "no-underscore-dangle": "off",
-    "react/jsx-filename-extension": [0]
+    "react/jsx-filename-extension": [0],
+    "no-case-declarations": "off"
   }
 }

@@ -50,8 +50,6 @@ class HomeSearch extends Component {
     const selectedMediaTypes = this.state.mediaTypes.filter(type => type.value);
     e.preventDefault();
 
-    this.props.setQueryString(this.state.searchText);
-    this.props.setMediaTypes(selectedMediaTypes.map(type => type.type));
     this.props.history.push({
       pathname: '/search',
       search: `?query=${this.state.searchText}&media=${selectedMediaTypes.map(type => type.type)}`,
