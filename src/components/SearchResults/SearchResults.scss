@@ -3,6 +3,9 @@
   padding-top: 100px;
   height: 100%;
   width: 80%;
+  &__filter {
+    display: flex;
+  }
   &__results {
     display: flex;
     flex-wrap: wrap;
@@ -20,6 +23,12 @@
       }
       @include media-up(ml) {
         width: 20%;
+        &:first-child {
+          padding-left: 0;
+        }
+        &:nth-child(4) {
+          padding-right: 0;
+        }
       }
       &-image {
         display: flex;

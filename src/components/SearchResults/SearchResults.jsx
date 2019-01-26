@@ -2,24 +2,44 @@ import React, { Component } from 'react';
 
 class SearchResults extends Component {
 
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    this.fetchResults();
   }
 
-  componentDidMount() {
-    const media = this.props.mediaTypes.map(type => type.type);
+  componentDidUpdate(prevProps) {
+    if (this.props.location.state.media !== prevProps.location.state.media) {
+      this.fetchResults();
+    }
+  }
 
-    setTimeout(() => {
-      // Allow time for header animations to finish
-      this.props.searchQuery({ q: this.props.queryString, 'media_type': media });
-    }, 500);
+  fetchResults() {
+    if (!this.props.location.state) {
+      this.props.history.push({
+        pathname: '/home',
+      });
+    } else {
+      const media = this.props.mediaTypes ?
+        this.props.mediaTypes :
+        this.props.location.state.media;
+      const q = this.props.queryString || this.props.location.state.query;
+
+      this.props.setQueryString(q);
+      this.props.setMediaTypes([...media]);
+  
+      setTimeout(() => {
+        // Allow time for header animations to finish
+        this.props.searchQuery({ q, 'media_type': media });
+      }, 500);
+    }
   }
 
   render() {
     const { queryString, results } = this.props;
     return (
       <section className="search">
-        <h2>Query: "{queryString}"</h2>
+        <div className="search__filter">
+          <h2>Query: "{queryString}"</h2>
+        </div>
         <div className="search__results">
           {
             results ?

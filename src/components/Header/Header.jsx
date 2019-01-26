@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 
 class Header extends Component {
@@ -28,22 +29,32 @@ class Header extends Component {
   }
 
   handleSubmit(e) {
-    const media = this.props.mediaTypes.map(type => type.type);
+    const media = this.props.mediaTypes;
 
     e.preventDefault();
 
     this.props.setQueryString(this.state.searchText);
-    this.props.searchQuery({ q: this.state.searchText, 'media_type': media });
+    this.props.setResults(null);
+    this.props.history.push({
+      pathname: '/search',
+      search: `?query=${this.state.searchText}&media=${media}`,
+      state: {
+        query: this.state.searchText,
+        media: media,
+      }
+    });
   }
 
   render() {
     return (
       <header className={`header ${this.props.queryString ? 'header--active' : ''}`}>
         <div className="header__logo">
-          <svg>
-            <title>NasaSearch Logo</title>
-            <use xlinkHref="#icon-logo"></use>
-          </svg>
+          <Link to="/home">
+            <svg>
+              <title>NasaSearch Logo</title>
+              <use xlinkHref="#icon-logo"></use>
+            </svg>
+          </Link>
         </div>
         {
           this.props.queryString ?

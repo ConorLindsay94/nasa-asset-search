@@ -20,6 +20,11 @@ class HomeSearch extends Component {
     this.checkboxSelected = this.checkboxSelected.bind(this);
   }
 
+  componentDidMount() {
+    this.props.setQueryString(null);
+    this.props.setResults(null);
+  }
+
   handleInputChange(e) {
     this.setState({
       searchText: e.target.value.length ?
@@ -42,14 +47,18 @@ class HomeSearch extends Component {
   }
 
   handleSubmit(e) {
+    const selectedMediaTypes = this.state.mediaTypes.filter(type => type.value);
     e.preventDefault();
 
     this.props.setQueryString(this.state.searchText);
-    this.props.setMediaTypes(this.state.mediaTypes.filter(type => type.value));
+    this.props.setMediaTypes(selectedMediaTypes.map(type => type.type));
     this.props.history.push({
       pathname: '/search',
-      search: `?query=${this.state.searchText}`,
-      state: { query: this.state.searchText },
+      search: `?query=${this.state.searchText}&media=${selectedMediaTypes.map(type => type.type)}`,
+      state: {
+        query: this.state.searchText,
+        media: selectedMediaTypes.map(type => type.type),
+      }
     });
   }
 
