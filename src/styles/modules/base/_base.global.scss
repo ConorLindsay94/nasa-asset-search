@@ -48,3 +48,40 @@ img {
     opacity: 1;
   }
 }
+
+.input-wrapper {
+  display: flex;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid rgb(105, 105, 105);
+  border-radius: 5px;
+  input {
+    flex-grow: 2;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    @include fluid-type(font-size, 320px, 1000px, 15px, 20px);
+  }
+  &__submit {
+    padding: 10px;
+    background: #ffffff;
+    appearance: none;
+    border: none;
+    opacity: .4;
+    transition: all .2s ease;
+    user-select: none;
+    &--active {
+      cursor: pointer;
+      opacity: 1;
+      user-select: auto;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    svg {
+      height: 30px;
+      width: 30px;
+    }
+  }
+}

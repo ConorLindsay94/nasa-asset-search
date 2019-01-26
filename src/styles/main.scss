@@ -1,5 +1,7 @@
 @import "modules/mixins/breakpoints";
 @import "modules/mixins/fluid-typography";
+@import "modules/animations/logo-slide";
+@import "modules/animations/search-drop-in";
 @import "modules/settings/settings.variables";
 @import "modules/settings/settings.colours";
 @import "modules/settings/settings.fonts";
@@ -11,3 +13,4 @@
 // Components
 @import "../components/Header/Header.scss";
 @import "../components/HomeSearch/HomeSearch.scss";
+@import "../components/SearchResults/SearchResults.scss";

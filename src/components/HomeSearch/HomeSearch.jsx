@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Checkbox from '../Checkbox/Checkbox';
+import SearchBar from '../SearchBar/SearchBar';
 
 class HomeSearch extends Component {
 
@@ -7,12 +8,16 @@ class HomeSearch extends Component {
     super();
 
     this.state = {
-      images: true,
-      audio: false,
-      video: false,
+      mediaTypes: [
+        { type: 'image', value: true, prettyName: 'Images'},
+        { type: 'audio', value: false, prettyName: 'Audio'},
+        { type: 'videos', value: false, prettyName: 'Videos'},
+      ],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkboxSelected = this.checkboxSelected.bind(this);
   }
 
   handleInputChange(e) {
@@ -22,83 +27,74 @@ class HomeSearch extends Component {
     });
   }
 
-  handleCheckboxChange(e, type) {
+  handleCheckboxChange(e, typeName) {
+    let mediaTypes = this.state.mediaTypes;
+    let mediaType = mediaTypes.find(type => type.type === typeName);
+    const typeIdx = mediaTypes.findIndex(type => type.type === typeName);
+
+    mediaType.value = e.target.checked;
+
+    mediaTypes.splice(typeIdx, 1, mediaType);
+
     this.setState({
-      [type]: e.target.checked,
-    })
+      mediaTypes,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    this.props.setQueryString(this.state.searchText);
+    this.props.setMediaTypes(this.state.mediaTypes.filter(type => type.value));
+    this.props.history.push({
+      pathname: '/search',
+      search: `?query=${this.state.searchText}`,
+      state: { query: this.state.searchText },
+    });
   }
 
   checkboxSelected() {
-    if (!this.state.images &&
-        !this.state.audio &&
-        !this.state.video) {
-          return false;
-      } else {
-        return true;
-      }
+    const checkedMedia = this.state.mediaTypes
+      .find(type => type.value);
+
+    if (checkedMedia) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {
     return (
       <section className="home-search">
-        <form className="home-search__form">
+        <form
+          className="home-search__form"
+          onSubmit={this.handleSubmit}
+        >
           <label 
             htmlFor="nasa-home-search"
             className="home-search__form-label">
               What would you like to search for?
           </label>
-          <div className="home-search__form-wrapper">
-            <input 
-              id="nasa-home-search"
-              type="text"
-              className="home-search__form-input"
-              onChange={this.handleInputChange}
-            />
-            <button
-              type="submit"
-              className={this.state.searchText && this.checkboxSelected() ? 
-                "home-search__form-submit home-search__form-submit--active" :
-                "home-search__form-submit"
-              }
-              disabled={this.state.searchText && this.checkboxSelected() ?
-                "" : "disabled"
-              }
-            >
-              <svg>
-                <title>Search Icon</title>
-                <desc>A magnifying glass icon to indicate button is to be used to search.</desc>
-                <use xlinkHref="#icon-search"></use>
-              </svg>
-            </button>
-          </div>
-          <div className="home-search__form-checkboxes">
-              <div className="home-search__form-checkboxes__checkbox">
+          <SearchBar 
+            handleInputChange={this.handleInputChange}
+            searchText={this.state.searchText}
+          />
+          <div className="home-search__form-checkboxes">  
+            {this.state.mediaTypes.map(type => (
+              <div
+                className="home-search__form-checkboxes__checkbox"
+                key={type.type}
+              >
                 <Checkbox
-                  id="nasa-images"
-                  label="Images"
+                  id={`nasa-${type.type}`}
+                  label={type.prettyName}
                   handleCheckboxChange={this.handleCheckboxChange}
-                  type={this.state.images}
-                  typeText="images"
+                  type={type.value}
+                  typeText={type.type}
                 />
               </div>
-              <div className="home-search__form-checkboxes__checkbox">
-                <Checkbox
-                  id="nasa-audio"
-                  label="Audio"
-                  handleCheckboxChange={this.handleCheckboxChange}
-                  type={this.state.audio}
-                  typeText="audio"
-                />
-              </div>
-              <div className="home-search__form-checkboxes__checkbox">
-                <Checkbox
-                  id="nasa-video"
-                  label="Video"
-                  handleCheckboxChange={this.handleCheckboxChange}
-                  type={this.state.video}
-                  typeText="video"
-                />
-              </div>
+            ))}
           </div>
           <div className="home-search__form-message">
             <p className={`error ${!this.checkboxSelected() ? 'error--display' : ''}`}>You must choose at least one type of asset.</p>
