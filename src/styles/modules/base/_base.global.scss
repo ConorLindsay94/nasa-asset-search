@@ -19,7 +19,7 @@ body {
   min-width: 320px;
   overflow-x: hidden;
   color: $colourText;
-  font-family: $fontBody;
+  font-family: gilroy;
 }
 
 img {
@@ -57,6 +57,7 @@ img {
     flex-grow: 2;
     padding: 5px;
     width: 100%;
+    font-family: gilroy;
     border: none;
     @include fluid-type(font-size, 320px, 1000px, 15px, 20px);
     @include media-up(sl) {
@@ -101,8 +102,7 @@ img {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -10px;
-    margin-left: -10px;
+    margin-left: -30px;
     height: 70px;
     width: 70px;
     animation: spinner .8s ease infinite;

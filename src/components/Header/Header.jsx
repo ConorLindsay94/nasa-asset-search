@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 
@@ -75,7 +76,11 @@ class Header extends Component {
       </header>
     )
   }
+}
 
+Header.propTypes = {
+  mediaTypes: PropTypes.array,
+  queryString: PropTypes.string,
 }
 
 export default Header;

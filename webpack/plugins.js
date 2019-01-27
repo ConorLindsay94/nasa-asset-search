@@ -27,9 +27,7 @@ module.exports = () => {
       name: 'sprite-store.svg',
       prefix: 'icon-',
     }),
-    new CopyWebpackPlugin([
-      {from: 'src/img', to: 'img'}
-    ]),
+    new CopyWebpackPlugin([]),
     new webpack.ProvidePlugin({
       Promise: 'es6-promise-promise',
     }),

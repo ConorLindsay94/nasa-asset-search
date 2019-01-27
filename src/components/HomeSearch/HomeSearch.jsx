@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Checkbox from '../Checkbox/Checkbox';
 import SearchBar from '../SearchBar/SearchBar';
 import checkboxSelected from '../../util/checkbox-selected';
@@ -22,7 +23,6 @@ class HomeSearch extends Component {
 
   componentDidMount() {
     this.props.setQueryString(null);
-    this.props.setResults(null);
 
     if (this.props.mediaTypes) {
       this.setState({
@@ -112,7 +112,10 @@ class HomeSearch extends Component {
       </section>
     )
   }
+}
 
+HomeSearch.propTypes = {
+  mediaTypes: PropTypes.array,
 }
 
 export default HomeSearch;

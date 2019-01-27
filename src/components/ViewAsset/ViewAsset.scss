@@ -10,6 +10,9 @@
       margin: 0;
     }
   }
+  &__meta {
+    padding-bottom: 20px;
+  }
   &__asset {
     padding-bottom: 20px;
     &__image {
@@ -33,5 +36,8 @@
         width: 60%;
       }
     }
+  }
+  &__desc {
+    padding-bottom: 100px;
   }
 }

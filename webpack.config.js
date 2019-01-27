@@ -1,4 +1,7 @@
 module.exports = (env, argv) => ({
+  output: {
+    publicPath: '/'
+  },
   resolve: { extensions: ['.js', '.jsx'] },
   devServer: {
     historyApiFallback: true,

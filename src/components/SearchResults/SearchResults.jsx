@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import createMediaArray from '../../util/create-media-array';
 import determineContent from '../../util/determine-content';
 import checkboxSelected from '../../util/checkbox-selected';
@@ -14,7 +15,7 @@ class SearchResults extends Component {
   }
 
   componentDidMount() {
-    this.fetchResults();
+    this.fetchResults(true);
   }
 
   componentDidUpdate(prevProps) {
@@ -26,7 +27,7 @@ class SearchResults extends Component {
     }
   }
 
-  fetchResults() {
+  fetchResults(firstLoad) {
     if (!this.props.location.state) {
       this.props.history.push({
         pathname: '/home',
@@ -38,13 +39,14 @@ class SearchResults extends Component {
       const q = this.props.queryString || this.props.location.state.query;
       const selectedMediaTypes = media.filter(type => type.value);
 
+      this.props.setResults(null);
       this.props.setQueryString(q);
       this.props.setMediaTypes([...media]);
   
       setTimeout(() => {
         // Allow time for header animations to finish
         this.props.searchQuery({ q, 'media_type': selectedMediaTypes.map(type => type.type) });
-      }, 500);
+      }, firstLoad ? 500 : 0);
     }
   }
 
@@ -57,7 +59,11 @@ class SearchResults extends Component {
 
     mediaTypes.splice(typeIdx, 1, mediaType);
 
-    this.props.setMediaTypes(mediaTypes);
+    this.props.setMediaTypes([...mediaTypes]);
+
+    if (checkboxSelected(mediaTypes)) {
+      this.fetchResults();
+    }
   }
 
   handleClick(item) {
@@ -106,24 +112,31 @@ class SearchResults extends Component {
         <div className="search__results">
           {
             results ?
-              results.items.map(item => (
-                <div
-                  className="search__results-link"
-                  key={item.data[0]['nasa_id']}
-                  onClick={() => this.handleClick(item)}
-                >
-                  <article className="search__results__item">
-                    {determineContent(item)}
-                    <label>{item.data[0].title}</label>
-                  </article>
-                </div>
-              )) : <div className="spinner"></div>
+              results.items.length ?
+                results.items.map(item => (
+                  <div
+                    className="search__results-link"
+                    key={item.data[0]['nasa_id']}
+                    onClick={() => this.handleClick(item)}
+                  >
+                    <article className="search__results__item">
+                      {determineContent(item)}
+                      <label>{item.data[0].title}</label>
+                    </article>
+                  </div>
+                )) : <p className="search__results__message">Sorry, there are no results for this query.</p>
+              : <div className="spinner"></div>
           }
         </div>
       </section>
     )
   }
+}
 
+SearchResults.propTypes = {
+  queryString: PropTypes.string,
+  mediaTypes: PropTypes.array.isRequired,
+  results: PropTypes.shape({items: PropTypes.array}),
 }
 
 export default SearchResults;

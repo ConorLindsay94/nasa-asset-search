@@ -1,7 +1,19 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
-$fontOpenSans: "Open Sans", sans-serif;
-$fontArial: "Arial", sans-serif;
-$fontHeading: $fontOpenSans;
-$fontBody: $fontOpenSans;
-$fontSecondary: $fontOpenSans;
-$fontTertiary: $fontOpenSans;
+@font-face {
+  font-family: gilroy-bold;
+  src: url("../fonts/gilroy-extrabold-webfont.woff2") format("woff2"),
+    url("../fonts/gilroy-extrabold-webfont.woff") format("woff"),
+    url("../fonts/gilroy-extrabold-webfont.ttf") format("truetype"),
+    url("../fonts/gilroy-extrabold-webfont.svg#gilroy-light-webfont") format("svg");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: gilroy;
+  src: url("../fonts/gilroy-light-webfont.woff2") format("woff2"),
+    url("../fonts/gilroy-light-webfont.woff") format("woff"),
+    url("../fonts/gilroy-light-webfont.ttf") format("truetype"),
+    url("../fonts/gilroy-light-webfont.svg#gilroy-light-webfont") format("svg");
+  font-style: normal;
+  font-weight: normal;
+}

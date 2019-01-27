@@ -1,8 +1,11 @@
 .search {
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 110px;
   height: 100%;
   width: 90%;
+  @include media-up(sl) {
+    padding-top: 100px;
+  }
   &__filter {
     display: flex;
     flex-direction: column;
@@ -14,6 +17,10 @@
     }
     h2 {
       margin: 0;
+      margin-bottom: 5px;
+      @include media-up(sl) {
+        margin-bottom: 0;
+      }
     }
     &__checkbox-wrapper {
       display: flex;
@@ -24,13 +31,17 @@
       }
     }
     &__message {
-      margin-left: 10px;
+      @include media-up(sl) {
+        margin-left: 10px;
+      }
     }
     &__checkboxes {
       display: flex;
       justify-content: center;
+      margin-bottom: 5px;
       @include media-up(sl) {
         justify-content: flex-start;
+        margin-bottom: 0;
       }
       &-checkbox {
         margin-left: 10px;
@@ -48,6 +59,7 @@
       width: 100%;
       text-decoration: none;
       @include media-between(sl, ml) {
+        flex: 0 0 45%;
         padding-left: 10%;
         width: 45%;
         &:first-child {
@@ -58,6 +70,7 @@
         }
       }
       @include media-up(ml) {
+        flex: 0 0 20%;
         padding-left: 6.66%;
         width: 20%;
         &:first-child {
@@ -121,6 +134,14 @@
         white-space: nowrap;
         cursor: pointer;
       }
+    }
+    &__message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      text-align: center;
+      transform: translateX(-50%);
     }
   }
 }
