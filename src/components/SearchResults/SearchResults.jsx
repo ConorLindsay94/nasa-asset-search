@@ -135,7 +135,7 @@ class SearchResults extends Component {
 
 SearchResults.propTypes = {
   queryString: PropTypes.string,
-  mediaTypes: PropTypes.array.isRequired,
+  mediaTypes: PropTypes.array,
   results: PropTypes.shape({items: PropTypes.array}),
 }
 

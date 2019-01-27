@@ -4,6 +4,12 @@ import { format } from 'date-fns'
 
 class ViewAsset extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.goBack = this.goBack.bind(this);
+  }
+
   componentDidMount() {
     window.scrollTo(0, 0);
 
@@ -12,6 +18,10 @@ class ViewAsset extends Component {
         pathname: '/home',
       });
     }
+  }
+
+  goBack() {
+    this.props.history.goBack();
   }
 
   determineMedia(item) {
@@ -59,6 +69,14 @@ class ViewAsset extends Component {
         {activeItem &&
           <Fragment>
             <div className="view-asset__title">
+              <svg 
+                className="view-asset__title__back"
+                onClick={this.goBack}
+              >
+                <title>Back</title>
+                <desc>Left arrow to indicate button to go back to the previous page.</desc>
+                <use xlinkHref="#icon-back"></use>
+              </svg>
               <h1>{activeItem.data[0].title}</h1>
             </div>
             <div className="view-asset__meta">
@@ -81,7 +99,7 @@ class ViewAsset extends Component {
 }
 
 ViewAsset.propTypes = {
-  activeItem: PropTypes.shape().isRequired,
+  activeItem: PropTypes.shape(),
 }
 
 export default ViewAsset;

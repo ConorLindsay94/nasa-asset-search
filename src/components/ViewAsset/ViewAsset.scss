@@ -5,9 +5,22 @@
   width: 90%;
   text-align: center;
   &__title {
+    position: relative;
+    display: flex;
+    justify-content: center;
     padding: 20px 0;
+    &__back {
+      position: absolute;
+      top: 25px;
+      left: 0;
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+    }
     h1 {
       margin: 0;
+      width: 70%;
+      @include fluid-type(font-size, 320px, 1000px, 25px, 35px);
     }
   }
   &__meta {
