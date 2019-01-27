@@ -7,8 +7,16 @@
     display: flex;
     flex-direction: column;
     padding: 20px 0;
+    text-align: center;
+    @include media-up(sl) {
+      text-align: left;
+    }
     &__checkboxes {
       display: flex;
+      justify-content: center;
+      @include media-up(sl) {
+        justify-content: flex-start;
+      }
       &-checkbox {
         margin-left: 10px;
         &:first-child {
@@ -57,33 +65,34 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 400px;
+        height: 300px;
         width: 100%;
         overflow: hidden;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        opacity: .8;
+        opacity: 1;
         transition: opacity .2s ease;
         @include media-up(sl) {
           height: 250px;
         }
         @include media-up(ml) {
           height: 200px;
+          opacity: .8;
         }
         &:hover {
           opacity: 1;
         }
       }
       svg {
-        height: 200px;
+        height: 100px;
         opacity: .8;
         fill: #ffffff;
         @include media-up(sl) {
-          height: 150px;
+          height: 75px;
         }
         @include media-up(ml) {
-          height: 100px;
+          height: 50px;
         }
         &:hover {
           opacity: 1;

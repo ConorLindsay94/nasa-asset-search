@@ -4,5 +4,5 @@ export default(string, decoded) => {
   if (decoded) {
     return urlencode.decode(string);
   }
-  return urlencode(string);
+  return string.replace(/ /g, '%20');
 };

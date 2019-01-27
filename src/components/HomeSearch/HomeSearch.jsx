@@ -23,7 +23,12 @@ class HomeSearch extends Component {
   componentDidMount() {
     this.props.setQueryString(null);
     this.props.setResults(null);
-    this.props.setMediaTypes([...this.state.mediaTypes]);
+
+    if (this.props.mediaTypes) {
+      this.setState({
+        mediaTypes: this.props.mediaTypes
+      });
+    }
   }
 
   handleInputChange(e) {

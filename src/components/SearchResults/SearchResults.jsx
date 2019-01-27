@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import createMediaArray from '../../util/create-media-array';
 import determineContent from '../../util/determine-content';
 import Checkbox from '../Checkbox/Checkbox';
@@ -10,6 +9,7 @@ class SearchResults extends Component {
     super(props);
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -59,6 +59,13 @@ class SearchResults extends Component {
     this.props.setMediaTypes(mediaTypes);
   }
 
+  handleClick(item) {
+    this.props.setActiveItem(item);
+    this.props.history.push({
+      pathname: `/asset/${item.data[0]['media_type']}/${item.data[0]['nasa_id']}`,
+    });
+  }
+
   render() {
     const { results, mediaTypes } = this.props;
     return (
@@ -88,19 +95,17 @@ class SearchResults extends Component {
           {
             results ?
               results.items.map(item => (
-                <Link
-                  to={`/asset/${item.data[0]['media_type']}/${item.data[0]['nasa_id']}`}
+                <div
                   className="search__results-link"
+                  key={item.data[0]['nasa_id']}
+                  onClick={() => this.handleClick(item)}
                 >
-                  <article 
-                    key={item.data[0]['nasa_id']}
-                    className="search__results__item"
-                  >
+                  <article className="search__results__item">
                     {determineContent(item)}
                     <label>{item.data[0].title}</label>
                   </article>
-                </Link>
-              )) : <p>Loading...</p>
+                </div>
+              )) : <div className="spinner"></div>
           }
         </div>
       </section>

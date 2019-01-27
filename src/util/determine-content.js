@@ -25,23 +25,21 @@ export default (item) => {
       );
     case 'video':
       return (
-        <div
-          className="search__results__item-image"
-          style={{
-            backgroundImage: `url(${
-              item.mediaLinks ?
-                item.mediaLinks.items.find(mediaItem => mediaItem.href.indexOf('.png') > -1).href :
-                '/img/no-video-preview.png'
-            }
-            )`,
-          }}
-        >
-          <svg>
-            <title>Audio Video</title>
-            <desc>A video icon to indicate that the piece of media is of type video.</desc>
-            <use xlinkHref="#icon-video" />
-          </svg>
-        </div>
+        item.mediaLinks &&
+          <div
+            className="search__results__item-image"
+            style={{
+              backgroundImage: `url("${
+                item.mediaLinks.items.find(mediaItem => mediaItem.href.indexOf('.png') > -1).href
+              }")`,
+            }}
+          >
+            <svg>
+              <title>Video Media</title>
+              <desc>A video icon to indicate that the piece of media is of type video.</desc>
+              <use xlinkHref="#icon-video" />
+            </svg>
+          </div>
       );
     default: return null;
   }

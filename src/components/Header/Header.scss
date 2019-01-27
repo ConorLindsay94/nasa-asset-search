@@ -11,31 +11,50 @@
     line-height: 100px;
     transform: translateX(-50%);
     transition: left .3s ease;
+    @include media-up(sl) {
+      line-height: 100px;
+    }
     svg {
       vertical-align: middle;
       height: 50px;
-      width: 200px;
+      width: 250px;
       fill: #ffffff;
+      @include media-up(sl) {
+        height: 100px;
+      }
     }
   }
   &--active {
+    @include media-down(sl) {
+      height: 110px;
+    }
     .header__logo {
-      animation: logoSlide .3s forwards;
+      line-height: 60px;
+      @include media-up(sl) {
+        animation: logoSlide .3s forwards;
+      }
     }
     .header__mini-search {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      height: 100%;
+      justify-content: center;
       width: 100%;
+      @include media-up(sl) {
+        justify-content: flex-end;
+        height: 100%;
+      }
       &__input {
         position: absolute;
-        top: -100px;
-        right: 5%;
-        height: 50%;
-        width: 30%;
-        animation: searchDropIn .2s .3s forwards;
+        top: 84px;
+        width: 90%;
         transform: translateY(-50%);
+        @include media-up(sl) {
+          top: -100px;
+          right: 5%;
+          height: 50%;
+          width: 30%;
+          animation: searchDropIn .2s .3s forwards;
+        }
       }
     }
   }

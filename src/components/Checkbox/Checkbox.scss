@@ -1,0 +1,47 @@
+.nasa-checkbox {
+  .checkbox-label {
+    position: relative;
+    margin-right: 25px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      right: -19px;
+      display: inline-block;
+      height: 6px;
+      width: 9px;
+      border-bottom: 2px solid;
+      border-left: 2px solid;
+      transform: rotate(-45deg);
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      right: -22px;
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      border: 1px solid;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+  input[type="checkbox"] + label {
+    &:before {
+      content: none;
+    }
+    
+  }
+  input[type="checkbox"]:checked + label {
+    &:before {
+      content: "";
+    }
+  }
+
+  input[type="checkbox"]:focus + label {
+    &:after {
+      outline: rgb(59, 153, 252) auto 5px;
+    }
+  }
+}

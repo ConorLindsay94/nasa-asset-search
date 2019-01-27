@@ -35,9 +35,6 @@ img {
 
 #root {
   height: 100%;
-  .nasa-app {
-    height: 100%;
-  }
 }
 
 .error {
@@ -58,19 +55,25 @@ img {
   border-radius: 5px;
   input {
     flex-grow: 2;
-    padding: 15px;
+    padding: 5px;
     width: 100%;
     border: none;
     @include fluid-type(font-size, 320px, 1000px, 15px, 20px);
+    @include media-up(sl) {
+      padding: 15px;
+    }
   }
   &__submit {
-    padding: 10px;
+    padding: 5px;
     background: #ffffff;
     appearance: none;
     border: none;
     opacity: .4;
     transition: all .2s ease;
     user-select: none;
+    @include media-up(sl) {
+      padding: 10px;
+    }
     &--active {
       cursor: pointer;
       opacity: 1;
@@ -80,8 +83,31 @@ img {
       }
     }
     svg {
-      height: 30px;
-      width: 30px;
+      height: 20px;
+      width: 20px;
+      @include media-up(sl) {
+        height: 30px;
+        width: 30px;
+      }
     }
+  }
+}
+
+.spinner {
+  &:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    height: 70px;
+    width: 70px;
+    animation: spinner .8s ease infinite;
+    border: 5px solid transparent;
+    border-radius: 50%;
+    border-top-color: #2b3e42;
+    border-bottom-color: #2b3e42;
   }
 }

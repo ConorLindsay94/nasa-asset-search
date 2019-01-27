@@ -1,17 +1,23 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 function Checkbox (props) {
   return (
-    <Fragment>
-      <label htmlFor={props.id}>{props.label}</label>
-        <input
-          id={props.id}
-          type="checkbox"
-          onChange={(e) => props.handleCheckboxChange(e, props.typeText)}
-          checked={props.type}
-        />
-    </Fragment>
+    <div className="nasa-checkbox">
+      <input
+        id={props.id}
+        type="checkbox"
+        onChange={(e) => props.handleCheckboxChange(e, props.typeText)}
+        checked={props.type}
+        className="hidden"
+      />
+      <label
+        className="checkbox-label" 
+        htmlFor={props.id}
+      >
+        {props.label}
+      </label>
+    </div>
   );
 }
 
