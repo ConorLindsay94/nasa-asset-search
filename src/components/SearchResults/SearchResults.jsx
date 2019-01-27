@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import createMediaArray from '../../util/create-media-array';
 import determineContent from '../../util/determine-content';
+import checkboxSelected from '../../util/checkbox-selected';
 import Checkbox from '../Checkbox/Checkbox';
 
 class SearchResults extends Component {
@@ -70,27 +71,38 @@ class SearchResults extends Component {
     const { results, mediaTypes } = this.props;
     return (
       <section className="search">
-        <div className="search__filter">
-          <h2>Filter</h2>
-          <div className="search__filter__checkboxes">  
-            {mediaTypes ?
-              mediaTypes.map(type => (
-                <div
-                  className="search__filter__checkboxes-checkbox"
-                  key={type.type}
+        {mediaTypes &&
+          <div className="search__filter">
+            <h2>Filter</h2>
+            <div className="search__filter__checkbox-wrapper">
+              <div className="search__filter__checkboxes">  
+                {
+                  mediaTypes.map(type => (
+                    <div
+                      className="search__filter__checkboxes-checkbox"
+                      key={type.type}
+                    >
+                      <Checkbox
+                        id={`nasa-${type.type}`}
+                        label={type.prettyName}
+                        handleCheckboxChange={this.handleCheckboxChange}
+                        type={type.value}
+                        typeText={type.type}
+                      />
+                    </div>
+                  ))
+                }
+              </div>
+              <div className="search__filter__message">
+                <p 
+                  className={`error ${!checkboxSelected(mediaTypes) ?'error--display' : ''}`}
                 >
-                  <Checkbox
-                    id={`nasa-${type.type}`}
-                    label={type.prettyName}
-                    handleCheckboxChange={this.handleCheckboxChange}
-                    type={type.value}
-                    typeText={type.type}
-                  />
-                </div>
-              )) : null
-            }
+                  You must choose at least one type of asset.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        }
         <div className="search__results">
           {
             results ?

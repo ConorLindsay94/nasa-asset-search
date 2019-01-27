@@ -67,6 +67,7 @@ class Header extends Component {
                 <SearchBar 
                   handleInputChange={this.handleInputChange}
                   searchText={this.state.searchText}
+                  mediaTypes={this.props.mediaTypes}
                 />            
               </div>
             </form> : null

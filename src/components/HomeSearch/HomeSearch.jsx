@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Checkbox from '../Checkbox/Checkbox';
 import SearchBar from '../SearchBar/SearchBar';
+import checkboxSelected from '../../util/checkbox-selected';
 
 class HomeSearch extends Component {
 
@@ -17,7 +18,6 @@ class HomeSearch extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.checkboxSelected = this.checkboxSelected.bind(this);
   }
 
   componentDidMount() {
@@ -68,17 +68,6 @@ class HomeSearch extends Component {
     });
   }
 
-  checkboxSelected() {
-    const checkedMedia = this.state.mediaTypes
-      .find(type => type.value);
-
-    if (checkedMedia) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   render() {
     return (
       <section className="home-search">
@@ -94,6 +83,7 @@ class HomeSearch extends Component {
           <SearchBar 
             handleInputChange={this.handleInputChange}
             searchText={this.state.searchText}
+            mediaTypes={this.state.mediaTypes}
           />
           <div className="home-search__form-checkboxes">  
             {this.state.mediaTypes.map(type => (
@@ -112,7 +102,11 @@ class HomeSearch extends Component {
             ))}
           </div>
           <div className="home-search__form-message">
-            <p className={`error ${!this.checkboxSelected() ? 'error--display' : ''}`}>You must choose at least one type of asset.</p>
+            <p 
+              className={`error ${!checkboxSelected(this.state.mediaTypes) ?'error--display' : ''}`}
+            >
+              You must choose at least one type of asset.
+            </p>
           </div>
         </form>
       </section>

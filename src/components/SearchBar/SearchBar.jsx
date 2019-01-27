@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import checkboxSelected from '../../util/checkbox-selected';
 
 function SearchBar (props) {
   return (
@@ -13,11 +14,11 @@ function SearchBar (props) {
       />
       <button
         type="submit"
-        className={props.searchText ? 
+        className={props.searchText && checkboxSelected(props.mediaTypes) ? 
           "input-wrapper__submit input-wrapper__submit--active" :
           "input-wrapper__submit"
         }
-        disabled={props.searchText ?
+        disabled={props.searchText && checkboxSelected(props.mediaTypes) ?
           "" : "disabled"
         }
       >
@@ -34,6 +35,8 @@ function SearchBar (props) {
 SearchBar.propTypes = {
   handleInputChange: PropTypes.func,
   checkboxSelected: PropTypes.func,
+  searchText: PropTypes.string,
+  mediaTypes: PropTypes.array.isRequired,
 };
 
 export default SearchBar;

@@ -6,10 +6,25 @@
   &__filter {
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
+    padding-top: 20px;
     text-align: center;
     @include media-up(sl) {
+      padding: 20px 0px;
       text-align: left;
+    }
+    h2 {
+      margin: 0;
+    }
+    &__checkbox-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @include media-up(sl) {
+        flex-direction: row;
+      }
+    }
+    &__message {
+      margin-left: 10px;
     }
     &__checkboxes {
       display: flex;
@@ -104,6 +119,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        cursor: pointer;
       }
     }
   }

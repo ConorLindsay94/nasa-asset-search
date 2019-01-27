@@ -78,13 +78,14 @@ img {
       cursor: pointer;
       opacity: 1;
       user-select: auto;
-      &:hover {
-        transform: scale(1.1);
-      }
     }
     svg {
       height: 20px;
       width: 20px;
+      transition: transform .2s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
       @include media-up(sl) {
         height: 30px;
         width: 30px;
