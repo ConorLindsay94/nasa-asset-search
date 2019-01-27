@@ -8,7 +8,6 @@ const mapStateToProps = (state) => ({
   mediaTypes: state.search.mediaTypes,
 });
 
-
 const mapDispatchToProps = (dispatch) => ({
   setQueryString: (query) => dispatch(setQueryString(query)),
   setMediaTypes: (query) => dispatch(setMediaTypes(query)),
