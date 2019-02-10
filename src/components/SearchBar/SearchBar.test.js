@@ -2,8 +2,6 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import SearchBar from './SearchBar';
 import Adapter from 'enzyme-adapter-react-16';
-import checkboxSelected from '../../util/checkbox-selected';
-jest.mock('../../util/checkbox-selected', () => jest.fn());
 
 Enzyme.configure({ adapter: new Adapter() });
 
